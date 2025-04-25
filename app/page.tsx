@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./page.module.css";
-import { setCookie } from "./actions/set-cookie";
+import { getCookie, setCookie } from "./actions/set-cookie";
 import React from "react";
 
 export default async function Home() {
@@ -12,11 +12,18 @@ export default async function Home() {
     setValue(response.value);
   };
 
+  const handleGetCookie = async () => {
+    const value = await getCookie("Segredo");
+    if (!!value) setValue(value);
+  };
+
   return (
     <div className={styles.page}>
       <main>
-        <h1>Home: {value}</h1>
+        <h3>Home: {value}</h3>
         <button onClick={handleClick}>Definir Cookie</button>
+
+        <button onClick={handleGetCookie}>getCookie</button>
       </main>
     </div>
   );
