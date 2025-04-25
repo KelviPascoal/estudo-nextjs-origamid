@@ -22,12 +22,15 @@ export default async function Menu() {
   }
 
   return (
-    <ul className="menu">
+    <ul className="menu" style={{ display: "flex", gap: 8 }}>
       <li>
         <Link href="/">Home</Link>
       </li>
       <li>
         {conta.autorizado ? conta.usuario : <Link href="/login">Login</Link>}
+      </li>
+      <li>
+        <Link href="/produtos">Produtos</Link>
       </li>
     </ul>
   );
