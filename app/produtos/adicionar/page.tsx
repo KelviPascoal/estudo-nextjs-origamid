@@ -3,7 +3,7 @@ import React from "react";
 // import { Produto } from "../page";
 import "./styles.css";
 import { adicionarProduto } from "@/app/actions/adicionar-produtos";
-import { useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 
 function Button() {
   const status = useFormStatus();
@@ -26,11 +26,14 @@ export default async function ProdutosPage() {
   //     };
   //     await adicionarProduto(payload);
   //   };
+  const [state, formAction] = useFormState(adicionarProduto, {
+    errors: [],
+  });
 
   return (
     <>
       <h3>adicionar produto</h3>
-      <form action={adicionarProduto}>
+      <form action={formAction}>
         <div className="form-group">
           <label htmlFor="nome">Nome</label>
           <input type="text" id="nome" name="nome" required />
